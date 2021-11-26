@@ -22,6 +22,10 @@ You can comment this line with : `# ` or `//`.
  - {exclude} : Exclude files. Example : `file1.c` or `file1.c,file2.c`.
  - {pos} : The current position where append the text.
 
+### In action :
+
+![makefile script](https://user-images.githubusercontent.com/92152391/143598582-5b8cf8d0-c134-4c46-be9f-42fc7a21c4f6.gif)
+
 ### Example :
 
 #### Example 1 :

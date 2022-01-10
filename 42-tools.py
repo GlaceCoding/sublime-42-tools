@@ -52,7 +52,7 @@ class List42toolsCommand(sublime_plugin.TextCommand):
                 regex = '(' + regex + ')'
                 regexErase = re.compile('^' + re.escape(indent + template.format('{0}')).replace('\\{0\\}', regex) + '$')
             else:
-                regexErase = re.compile('^' + re.escape(indent + template.format('{0}')).replace('\\{0\\}', '.*') + '$')
+                regexErase = re.compile('^' + re.escape(indent + template.format('{0}')).replace('\\{0\\}', '(.*)') + '$')
 
             while True:
                 point = self.view.text_point(row + pos, 0)

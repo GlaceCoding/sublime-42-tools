@@ -14,13 +14,13 @@ This command will print a file list in your folder.
 
 You can comment this line with : `# ` or `//`.
 
- - {pwd} : Optional parameter, by default is the file folder (-> relative path from the file folder).
+ - `{pwd}` : Optional parameter, by default is the file folder (-> relative path from the file folder).
    This parameter is usefull for HTML project.
- - {template} : String template for each file `{0}`.
- - {path} : File output. Recommanded : Relative url from the file folder or `{pwd}` path.
- - {match} : Filter with filename. Example : `*.c`.
- - {exclude} : Exclude files. Example : `file1.c` or `file1.c,file2.c`.
- - {pos} : The current position where append the text.
+ - `{template}` : String template for each file `{0}`.
+ - `{path}` : File output. Recommanded : Relative url from the file folder or `{pwd}` path.
+ - `{match}` : Filter with filename. Example : `*.c`. If you want use a *regex*, use `{matchreg}`.
+ - `{exclude}` : Exclude files. Example : `file1.c` or `file1.c,file2.c`.
+ - `{pos}` : The current position where append the text.
 
 ### In action :
 
@@ -80,4 +80,23 @@ main.py
 changelog/version1.txt
 changelog/version2.txt
 changelog/version3.txt
+```
+
+#### Example 3 :
+
+``` Makefile
+# <!-- pre='srcs/' path='./' match[regex]='.*(?<!bonus)\.c' exclude='main.c' pos='1' template='     {0} \' -->
+SRC   = main.c \
+        screen/map2.c \
+        screen/libx.c \
+        screen/screen.c \
+        screen/draw_line.c \
+        screen/draw.c \
+        screen/map.c \
+
+
+# <!-- pre='srcs/' path='./' match='*_bonus.c' exclude='main_bonus.c' pos='1' template='        {0} \' -->
+SRC_BONUS = main_bonus.c \
+        screen/stats_bonus.c \
+        screen/debug_screen_bonus.c \
 ```

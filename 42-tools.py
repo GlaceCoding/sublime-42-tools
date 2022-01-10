@@ -46,8 +46,11 @@ class List42toolsCommand(sublime_plugin.TextCommand):
             point = self.view.text_point(row + pos, 0)
             position = self.view.line(sublime.Region(point)).begin()
 
-            if 'match' in parser.attr:
-                regex = re.escape(parser.attr['match']).replace('\\*', '.*')
+            if 'match' in parser.attr or 'match[regex]' in parser.attr:
+                if 'match[regex]' in parser.attr:
+                    regex = parser.attr['match[regex]']
+                else:
+                    regex = re.escape(parser.attr['match']).replace('\\*', '.*')
                 regexMatch = re.compile('^' + regex + '$')
                 regex = '(' + regex + ')'
                 regexErase = re.compile('^' + re.escape(indent + template.format('{0}')).replace('\\{0\\}', regex) + '$')
@@ -76,7 +79,7 @@ class List42toolsCommand(sublime_plugin.TextCommand):
                 for name in files:
                     match = 1
                     exclude = None
-                    if 'match' in parser.attr:
+                    if 'match' in parser.attr or 'match[regex]' in parser.attr:
                         match = re.match(regexMatch, name)
                     if match is not None:
                         src = os.path.relpath(os.path.join(root, name), prepath)
